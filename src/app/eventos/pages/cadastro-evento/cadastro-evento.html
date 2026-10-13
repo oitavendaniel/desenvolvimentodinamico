@@ -1,0 +1,81 @@
+﻿<header class="cabeca">
+  <span class="etiqueta">Agenda acadêmica</span>
+  <h2>Cadastro de eventos</h2>
+  <p>Organize os próximos encontros e atividades da instituição.</p>
+</header>
+
+<form class="ficha" #formulario="ngForm" (ngSubmit)="salvar(formulario)" novalidate>
+  <div class="titulo-formulario">
+    <h3>Informações do evento</h3>
+    <p>Preencha os cinco campos abaixo para cadastrar um evento.</p>
+  </div>
+  <div class="campos">
+    <div class="campo completo">
+      <label for="titulo">Título do evento</label>
+      <input id="titulo" name="titulo" type="text" placeholder="Ex.: Semana de tecnologia" [(ngModel)]="rascunho.titulo" (blur)="tocados.titulo = true" [class.invalido]="!!mensagem('titulo')" [attr.aria-invalid]="!!mensagem('titulo')" [attr.aria-describedby]="mensagem('titulo') ? 'erro-titulo' : null" required minlength="5" maxlength="80">
+      @if (mensagem('titulo'); as erro) {
+        <small id="erro-titulo" class="erro">{{ erro }}</small>
+      }
+    </div>
+    <div class="campo">
+      <label for="data">Data</label>
+      <input id="data" name="data" type="date" [(ngModel)]="rascunho.data" (blur)="tocados.data = true" [class.invalido]="!!mensagem('data')" [attr.aria-invalid]="!!mensagem('data')" [attr.aria-describedby]="mensagem('data') ? 'erro-data' : null" required>
+      @if (mensagem('data'); as erro) {
+        <small id="erro-data" class="erro">{{ erro }}</small>
+      }
+    </div>
+    <div class="campo">
+      <label for="local">Local</label>
+      <select id="local" name="local" [(ngModel)]="rascunho.local" (blur)="tocados.local = true" [class.invalido]="!!mensagem('local')" [attr.aria-invalid]="!!mensagem('local')" [attr.aria-describedby]="mensagem('local') ? 'erro-local' : null" required>
+        <option value="" disabled>Selecione o local</option>
+        <option value="Auditório">Auditório</option>
+        <option value="Laboratório 1">Laboratório 1</option>
+        <option value="Laboratório 2">Laboratório 2</option>
+        <option value="Sala 101">Sala 101</option>
+      </select>
+      @if (mensagem('local'); as erro) {
+        <small id="erro-local" class="erro">{{ erro }}</small>
+      }
+    </div>
+    <div class="campo">
+      <label for="emailResponsavel">E-mail do responsável</label>
+      <input id="emailResponsavel" name="emailResponsavel" type="email" autocomplete="email" placeholder="nome@exemplo.com" [(ngModel)]="rascunho.emailResponsavel" (blur)="tocados.emailResponsavel = true" [class.invalido]="!!mensagem('emailResponsavel')" [attr.aria-invalid]="!!mensagem('emailResponsavel')" [attr.aria-describedby]="mensagem('emailResponsavel') ? 'erro-emailResponsavel' : null" required email maxlength="254">
+      @if (mensagem('emailResponsavel'); as erro) {
+        <small id="erro-emailResponsavel" class="erro">{{ erro }}</small>
+      }
+
+    </div>
+    <div class="campo">
+      <label for="vagas">Vagas</label>
+      <input id="vagas" name="vagas" type="number" placeholder="Ex.: 50" [(ngModel)]="rascunho.vagas" (blur)="tocados.vagas = true" [class.invalido]="!!mensagem('vagas')" [attr.aria-invalid]="!!mensagem('vagas')" [attr.aria-describedby]="mensagem('vagas') ? 'erro-vagas' : null" required min="1" max="200" step="1">
+      @if (mensagem('vagas'); as erro) {
+        <small id="erro-vagas" class="erro">{{ erro }}</small>
+      }
+    </div>
+  </div>
+  <div class="acoes">
+    <button type="submit" [disabled]="temErro">Cadastrar evento</button>
+    <button class="secundario" type="button" (click)="limpar(formulario)">Limpar campos</button>
+  </div>
+</form>
+
+<section class="lista" aria-labelledby="titulo-lista">
+  <div class="titulo-lista"><h3 id="titulo-lista">Eventos cadastrados</h3><span class="quantidade">{{ cadastrados.length }}</span></div>
+  <div class="cartoes" aria-live="polite">
+    @for (evento of cadastrados; track evento.id) {
+      <article class="cartao">
+        <span class="etiqueta">Evento</span>
+        <h4>{{ evento.titulo }}</h4>
+        <dl>
+          <div><dt>Data</dt><dd>{{ evento.data }}</dd></div>
+          <div><dt>Local</dt><dd>{{ evento.local }}</dd></div>
+          <div><dt>E-mail do responsável</dt><dd>{{ evento.emailResponsavel }}</dd></div>
+          <div><dt>Vagas</dt><dd>{{ evento.vagas }}</dd></div>
+        </dl>
+      </article>
+    } @empty {
+      <div class="vazio"><span class="etiqueta">Sua agenda começa aqui</span><h4>Nenhum evento cadastrado</h4><p>Preencha o formulário para adicionar seu primeiro evento.</p></div>
+    }
+  </div>
+</section>
+

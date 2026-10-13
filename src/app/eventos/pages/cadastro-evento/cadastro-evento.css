@@ -1,0 +1,3 @@
+﻿@import '../../eventos.css';
+
+.invalido { border-color: var(--erro); background: var(--erro-fundo); }
