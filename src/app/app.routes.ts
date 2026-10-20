@@ -5,6 +5,7 @@ import { Padrao } from './padrao/padrao';
 import { NaoEncontrada } from './nao-encontrada/nao-encontrada';
 import { Eventos } from './eventos/eventos';
 import { CadastroEvento } from './eventos/pages/cadastro-evento/cadastro-evento';
+import { Empresa } from './empresa/empresa';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -14,6 +15,7 @@ export const routes: Routes = [
   { path: 'padrao', component: Padrao },
   { path: 'eventos', component: Eventos },
   { path: 'eventos/novo', component: CadastroEvento },
+  { path: 'empresa', component: Empresa },
 
   // curinga: precisa ser SEMPRE a ultima rota
   { path: '**', component: NaoEncontrada }

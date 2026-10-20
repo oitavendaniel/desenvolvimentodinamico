@@ -1,0 +1,75 @@
+﻿:host { display: block; }
+
+.cabeca { margin-bottom: 28px; }
+.etiqueta { color: var(--azul-claro); font-size: 11px; font-weight: 750; letter-spacing: .12em; text-transform: uppercase; }
+h2 { margin: 6px 0 8px; font-size: clamp(26px, 4vw, 34px); letter-spacing: -.035em; line-height: 1.2; }
+.cabeca p { margin: 0; color: var(--tinta-2); font-size: 14px; }
+
+.ficha {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  padding: 28px;
+  background: var(--cartao);
+  border: 1px solid var(--linha);
+  border-radius: 16px;
+  box-shadow: var(--sombra);
+}
+.campo { min-width: 0; }
+.campo:first-child, .campo:last-of-type { grid-column: 1 / -1; }
+label { display: block; margin-bottom: 7px; font-size: 14px; font-weight: 600; }
+input {
+  width: 100%;
+  min-width: 0;
+  min-height: 46px;
+  padding: 12px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 9px;
+  background: #fbfcfe;
+  color: var(--tinta);
+  font: inherit;
+  font-size: 15px;
+  transition: border-color .15s, box-shadow .15s;
+}
+input:focus-visible { outline: none; border-color: var(--azul-claro); background: #fff; box-shadow: 0 0 0 3px #1d5aa81f; }
+input.ng-invalid.ng-touched { border-color: var(--erro); background: var(--erro-fundo); }
+.erro { display: block; margin-top: 6px; color: var(--erro); font-size: 12px; }
+button {
+  grid-column: 1 / -1;
+  justify-self: start;
+  min-height: 46px;
+  padding: 11px 24px;
+  border: 1px solid var(--azul);
+  border-radius: 9px;
+  background: var(--azul);
+  color: white;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 650;
+  cursor: pointer;
+  transition: background .15s;
+}
+button:hover:not(:disabled) { background: var(--azul-claro); }
+button:focus-visible { outline: 3px solid var(--azul-claro); outline-offset: 3px; }
+button:disabled { background: #e8edf3; border-color: #dce3ea; color: #64748b; cursor: not-allowed; }
+
+.lista { margin-top: 34px; }
+h3 { margin: 0 0 16px; font-size: 18px; letter-spacing: -.02em; }
+.lista ul { display: grid; gap: 14px; margin: 0; padding: 0; list-style: none; }
+.lista li { padding: 22px; border: 1px solid var(--linha); border-left: 4px solid var(--ouro); border-radius: 12px; background: var(--cartao); overflow-wrap: anywhere; }
+.lista strong { display: block; margin-bottom: 12px; color: var(--azul); font-size: 19px; }
+.lista p { margin: 6px 0; color: var(--tinta-2); font-size: 14px; }
+.lista p:last-child { margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--linha); }
+
+@media (max-width: 520px) {
+  .ficha { grid-template-columns: 1fr; gap: 16px; padding: 20px 16px; }
+  button { justify-self: stretch; }
+  .lista li { padding: 18px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  input, button { transition: none; }
+}
+
+button.secundario { background: white; border-color: var(--linha); color: var(--azul); }
+button.secundario:hover { background: #eef3f9; }
+
