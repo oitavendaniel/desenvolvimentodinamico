@@ -65,12 +65,12 @@
     @for (evento of cadastrados; track evento.id) {
       <article class="cartao">
         <span class="etiqueta">Evento</span>
-        <h4>{{ evento.titulo }}</h4>
+        <h4>{{ evento.titulo | uppercase }}</h4>
         <dl>
-          <div><dt>Data</dt><dd>{{ evento.data }}</dd></div>
+          <div><dt>Data</dt><dd>{{ evento.data | date:'dd/MM/yyyy' }}</dd></div>
           <div><dt>Local</dt><dd>{{ evento.local }}</dd></div>
           <div><dt>E-mail do responsável</dt><dd>{{ evento.emailResponsavel }}</dd></div>
-          <div><dt>Vagas</dt><dd>{{ evento.vagas }}</dd></div>
+          <div><dt>Vagas</dt><dd>{{ evento.vagas | number }}</dd></div>
         </dl>
       </article>
     } @empty {
@@ -79,3 +79,18 @@
   </div>
 </section>
 
+
+<section class="lista" aria-labelledby="titulo-participantes">
+  <h3 id="titulo-participantes">Participantes  exemplos</h3>
+  <div class="cartoes">
+    @for (participante of participantes; track participante.telefone) {
+      <article class="cartao">
+        <span class="etiqueta">{{ participante.nome | iniciais }}</span>
+        <h4>{{ participante.nome }}</h4>
+        <p>{{ participante.telefone | telefone }}</p>
+        <p>{{ participante.formaPagamento | formaPagamento }}</p>
+        <p>{{ participante.dataEvento | diasPara }}</p>
+      </article>
+    }
+  </div>
+</section>

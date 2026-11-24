@@ -52,11 +52,11 @@
     @for (evento of cadastrados; track evento) {
       <article class="cartao">
         <span class="etiqueta">Evento</span>
-        <h4>{{ evento.nome }}</h4>
+        <h4>{{ evento.nome | uppercase }}</h4>
         <dl>
-          <div><dt>Data</dt><dd>{{ evento.data }} às {{ evento.horario }}</dd></div>
+          <div><dt>Data</dt><dd>{{ evento.data | date:'dd/MM/yyyy' }} às {{ evento.horario }}</dd></div>
           <div><dt>Local</dt><dd>{{ evento.local }}</dd></div>
-          <div><dt>Vagas</dt><dd>{{ evento.vagas }}</dd></div>
+          <div><dt>Vagas</dt><dd>{{ evento.vagas | number }}</dd></div>
           <div><dt>E-mail</dt><dd>{{ evento.email }}</dd></div>
         </dl>
         @if (evento.descricao) { <p class="descricao">{{ evento.descricao }}</p> }

@@ -1,4 +1,5 @@
-﻿import { Component } from '@angular/core';
+﻿import { DatePipe, UpperCasePipe, DecimalPipe } from '@angular/common';
+import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 
 interface Evento {
@@ -13,7 +14,7 @@ interface Evento {
 
 @Component({
   selector: 'app-eventos',
-  imports: [FormsModule],
+  imports: [FormsModule, DatePipe, UpperCasePipe, DecimalPipe],
   templateUrl: './eventos.html',
   styleUrl: './eventos.css'
 })
